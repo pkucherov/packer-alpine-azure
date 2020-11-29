@@ -61,3 +61,19 @@ Finally, `makeimage.cmd` will deallocate the VM, capture it as an image, and sta
 
 - Review/tweak boot command based on [ladar's comment](https://github.com/hashicorp/packer/issues/5049#issuecomment-343531173)
 - Investigate `iptables` error messages
+
+
+## Alpine commands
+
+- resize 
+    Install cfdisk (apk add cfdisk)
+
+    Use it to expand partition (just run cfdisk and it pretty intuitive)
+
+    Install e2fsprogs-extra
+
+    run resize2fs /dev/sda* to expand the file system (substitute * with partition that you want to expand)
+
+- check free space 
+  sudo df -h
+
