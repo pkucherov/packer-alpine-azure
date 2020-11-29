@@ -1,19 +1,22 @@
 # Community package required for shadow
-echo "http://dl-cdn.alpinelinux.org/alpine/v3.6/community" >> /etc/apk/repositories
+echo "http://dl-cdn.alpinelinux.org/alpine/v3.12/community" >> /etc/apk/repositories
 
 apk update && apk upgrade
 
 # Pre-reqs for WALinuxAgent
-apk add openssl sudo bash shadow parted iptables sfdisk
-apk add python py-setuptools
+apk add openssl sudo bash shadow parted iptables sfdisk openntpd
+apk add python3 py3-setuptools py-pip
+python3 -m ensurepip --default-pip
+python3 -m pip install --upgrade pip setuptools wheel
+pip install distro
 
 # Install WALinuxAgent
-wget https://github.com/Azure/WALinuxAgent/archive/v2.2.19.tar.gz && \
-tar xvzf v2.2.19.tar.gz && \
-cd WALinuxAgent-2.2.19 && \
-python setup.py install && \
+wget https://github.com/Azure/WALinuxAgent/archive/v2.2.49.2.tar.gz && \
+tar xvzf v2.2.49.2.tar.gz && \
+cd WALinuxAgent-2.2.49.2 && \
+python3 setup.py install --register-service && \
 cd .. && \
-rm -rf WALinuxAgent-2.2.19 v2.2.19.tar.gz
+rm -rf WALinuxAgent-2.2.49.2 v2.2.49.2.tar.gz
 
 # Update boot params
 sed -i 's/^default_kernel_opts="[^"]*/\0 console=ttyS0 earlyprintk=ttyS0 rootdelay=300/' /etc/update-extlinux.conf

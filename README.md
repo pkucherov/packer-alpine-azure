@@ -44,6 +44,11 @@ To use the image in Azure, you need to convert the image to VHD using `convert.p
 
 The `deploy.cmd` script will upload the VHD to Azure and start a VM based on the image. Please amend the script variables as necessary.
 
+For waagent run: to support python3
+```
+cat bin/waagent | sed 's_#!/usr/bin/env python_#!/usr/bin/env python3_' > /usr/sbin/waagent
+```
+
 Once the VM is started, you can log on via `ssh` and make any additional changes. Then deprovision the VM to get it ready to be used as an image:
 
 ```

@@ -1,8 +1,8 @@
 set vhd=".\output-hyperv-iso\Virtual Hard Disks\packer-hyperv-iso.vhd"
 
-set rg=hyperv-iso-alpine
+set rg=hyperv-iso-alpine3
 set location=eastus
-set sa=tcoalpinesa
+set sa=pkalpine312a
 set container=mydisks
 set disk=alpine-disk
 set blob=alpine.vhd
